@@ -1,4 +1,3 @@
-// /lib/views/components/flower_classifier.dart
 import 'package:flutter/material.dart';
 import 'dart:io';
 import '../services/api_service.dart';
