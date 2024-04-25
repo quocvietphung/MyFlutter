@@ -13,7 +13,7 @@ class ApiService {
         var responseData = await response.stream.toBytes();
         var result = String.fromCharCodes(responseData);
         var json = jsonDecode(result);
-        return json['flower'];
+        return json['Flower'];
       } else {
         return 'Error from API';
       }
