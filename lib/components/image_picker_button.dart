@@ -13,19 +13,39 @@ class ImagePickerButton extends StatefulWidget {
 
 class _ImagePickerButtonState extends State<ImagePickerButton> {
   final ImagePicker _picker = ImagePicker();
+  File? _imageFile;
 
-  Future<void> _pickImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+  // Function to handle both gallery and camera sources
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile = await _picker.pickImage(source: source);
     if (pickedFile != null) {
-      widget.onImagePicked(File(pickedFile.path));
+      setState(() {
+        _imageFile = File(pickedFile.path);  /
+      });
+      widget.onImagePicked(_imageFile!);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: _pickImage,
-      child: Text('Pick Image'),
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          if (_imageFile != null)
+            Image.file(_imageFile!, width: 200, height: 200),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () => _pickImage(ImageSource.gallery),
+            child: Text('Pick from Gallery'),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () => _pickImage(ImageSource.camera),
+            child: Text('Take a Photo'),
+          ),
+        ],
+      ),
     );
   }
 }
