@@ -20,7 +20,7 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
     final pickedFile = await _picker.pickImage(source: source);
     if (pickedFile != null) {
       setState(() {
-        _imageFile = File(pickedFile.path);  /
+        _imageFile = File(pickedFile.path);
       });
       widget.onImagePicked(_imageFile!);
     }
