@@ -26,7 +26,7 @@ class _PDFViewerState extends State<PDFViewer> {
     final response = await http.get(Uri.parse(url));
     final bytes = response.bodyBytes;
     final dir = await getTemporaryDirectory();
-    final file = File('${dir.path}/dummy.pdf'); // Sử dụng lớp File từ dart:io
+    final file = File('${dir.path}/dummy.pdf');
 
     await file.writeAsBytes(bytes, flush: true);
     setState(() {
