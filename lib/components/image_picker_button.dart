@@ -20,7 +20,7 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
-        _imageFile = File(pickedFile.path); // Update the UI with the new image
+        _imageFile = File(pickedFile.path);
       });
       widget.onImagePicked(_imageFile!);
     }
@@ -32,8 +32,6 @@ class _ImagePickerButtonState extends State<ImagePickerButton> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          if (_imageFile != null)
-            Image.file(_imageFile!, width: 200, height: 200),
           SizedBox(height: 20),
           ElevatedButton(
             onPressed: _pickImage,
